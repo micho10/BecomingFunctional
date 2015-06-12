@@ -15,6 +15,29 @@ public class Customer {
   public Customer() {
   }
 
+  public static List<String> getEnabledCustomerField(String field) {
+    ArrayList<String> outList = new ArrayList<>();
+    for (Customer customer : Customer.allCustomers) {
+      if (customer.enabled) {
+        if (field.equals("name"))
+          outList.add(customer.name);
+        else if (field.equals("state"))
+          outList.add(customer.state);
+        else if (field.equals("primaryContact"))
+          outList.add(customer.primaryContact);
+        else if (field.equals("domain"))
+          outList.add(customer.domain);
+        else if (field.equals("address"))
+          outList.add(customer.address);
+        else
+          throw new IllegalArgumentException("Unknown field");
+      }
+    }
+    return outList;
+  }
+  
+
+
   public static List<String> getEnabledCustomerNames() {
     ArrayList<String> outList = new ArrayList<String>();
     for (Customer customer : Customer.allCustomers) {
