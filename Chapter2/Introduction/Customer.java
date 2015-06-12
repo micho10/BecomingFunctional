@@ -35,48 +35,8 @@ public class Customer {
     }
     return outList;
   }
-  
 
 
-  public static List<String> getEnabledCustomerNames() {
-    ArrayList<String> outList = new ArrayList<String>();
-    for (Customer customer : Customer.allCustomers) {
-      if (customer.enabled) {
-        outList.add(customer.name);
-      }
-    }
-    return outList;
-  }
-
-  public static List<String> getEnabledCustomerStates() {
-    ArrayList<String> outList = new ArrayList<String>();
-    for (Customer customer : Customer.allCustomers) {
-      if (customer.enabled) {
-        outList.add(customer.state);
-      }
-    }
-    return outList;
-  }
-
-  public static List<String> getEnabledCustomerPrimaryContacts() {
-    ArrayList<String> outList = new ArrayList<String>();
-    for (Customer customer : Customer.allCustomers) {
-      if (customer.enabled) {
-        outList.add(customer.primaryContact);
-      }
-    }
-    return outList;
-  }
-
-  public static List<String> getEnabledCustomerDomains() {
-    ArrayList<String> outList = new ArrayList<String>();
-    for (Customer customer : Customer.allCustomers) {
-      if (customer.enabled) {
-        outList.add(customer.domain);
-      }
-    }
-    return outList;
-  }
 
   /* TODO: Add a main function */
   public static void main(String args[]) {
@@ -93,30 +53,19 @@ public class Customer {
       allCustomers.add(customer);
     }
 
-    printCustomerList();
+    print(Customer.allCustomers.get(1));
 
   }
 
 
-  public static void printCustomerList() {
-    for (Customer customer : allCustomers) {
-      System.out.println(customer);
-    }
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-
-    return builder.append("id: ").append(id)
-            .append(" | name: ").append(name)
-            .append(" | address: ").append(address)
-            .append(" | state: ").append(state)
-            .append(" | primaryContact: ").append(primaryContact)
-            .append(" | domain: ").append(domain)
-            .append(" | enabled: ").append(enabled)
-            .toString();
+  public static void print(Customer customer) {
+    System.out.printf("name: %s | address: %s | state: %s | contact: %s | domain: %s\n",
+            customer.getEnabledCustomerField("name"),
+            customer.getEnabledCustomerField("address"),
+            customer.getEnabledCustomerField("state"),
+            customer.getEnabledCustomerField("primaryContact"),
+            customer.getEnabledCustomerField("domain")
+            );
   }
 
 }
